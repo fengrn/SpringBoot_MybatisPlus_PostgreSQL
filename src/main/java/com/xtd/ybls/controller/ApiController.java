@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
  */
 
 
-@Api(tags = "api接口测试12323")
+@Api(tags = "api接口测试")
 @RestController
 @RequestMapping("/api")
 public class ApiController {
