@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xtd.ybls.dao.UserMapper" >
+
+<!--	&lt;!&ndash; 获取单个用户信息  &ndash;&gt;-->
+<!--	<select id="getUserByName" resultType="com.xtd.ybls.entity.UserPo" parameterType="String">-->
+<!--		select id,name,password,createtime,updatetime,station from userss-->
+<!--		<where>-->
+<!--			name =#{name}-->
+<!--		</where>-->
+<!--	</select>-->
+<!--	&lt;!&ndash; 获取所有用户信息  &ndash;&gt;-->
+<!--	<select id="listUsersAll" resultType="com.xtd.ybls.entity.UserPo">-->
+<!--		select id,name,password,createtime,updatetime,station from userss-->
+<!--	</select>-->
+<!--	&lt;!&ndash;插入用户信息&ndash;&gt;-->
+<!--	<insert id="saveUser" parameterType="com.xtd.ybls.entity.UserPo">-->
+<!--		INSERT INTO userss (name,password,createtime,station) VALUES (#{name},#{password},#{createtime},#{station})-->
+<!--	</insert>-->
+<!--	&lt;!&ndash;修改用户信息&ndash;&gt;-->
+<!--	<update id="updateUserById" parameterType="com.xtd.ybls.entity.UserPo">-->
+<!--		UPDATE userss set name = #{name},password=#{password},updatetime=#{updatetime},station=#{station}-->
+<!--		<where>-->
+<!--			id = #{id}-->
+<!--		</where>-->
+<!--	</update>-->
+<!--	&lt;!&ndash;删除一个用户&ndash;&gt;-->
+<!--	<delete id="deleteUserById" parameterType="int">-->
+<!--		DELETE from userss-->
+<!--		<where>-->
+<!--			id=#{id}-->
+<!--		</where>-->
+<!--	</delete>-->
+
+	<!-- 查询用户名是否存在  -->
+	<select id="queryUserByName" resultType="com.xtd.ybls.entity.UserPo" parameterType="String">
+		select * from userss
+		<where>
+			name =#{name}
+		</where>
+	</select>
+	<!-- 查询用户所拥有的权限  -->
+	<select id="listPermissions" resultType="com.xtd.ybls.entity.Permission" parameterType="String">
+		select t3.name,t3.path from userss t1
+		inner join users_permission_mapping t2 on t1.id=t2.userid
+		inner join permission t3 on t3.id=t2.permissionid
+		<where>
+			t1.name = #{username}
+		</where>
+	</select>
+</mapper>
