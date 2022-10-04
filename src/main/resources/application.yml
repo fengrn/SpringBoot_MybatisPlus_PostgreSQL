@@ -13,6 +13,10 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: false # 禁止大写变小写时自动添加下划线
 spring:
+  jackson: #序列化
+    default-property-inclusion: NON_NULL #过滤空值
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss #时间格式过滤
   datasource:
     dynamic:
       primary: dateService #设置默认的数据源或者数据源组,默认值即为master

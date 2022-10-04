@@ -1,8 +1,13 @@
 package com.xtd.ybls.controller;
 
+import com.xtd.ybls.result.ResultBody;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 测试knife4jConfig
@@ -17,8 +22,13 @@ import org.springframework.web.bind.annotation.*;
 public class ApiController {
     @ApiOperation(value = "查询所有用户")
     @GetMapping("/users")
-    public String list() {
-        return "1";
+    public ResultBody list() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("姓名", "feng");
+        map.put("性别", "男");
+        map.put("学号",null);
+        map.put("时间",new Date());
+        return ResultBody.success(map);
     }
 
     @ApiOperation(value = "添加用户")
